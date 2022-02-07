@@ -43,7 +43,7 @@ class DoacaoMenu(object):
         doacaoDAO = DoacaoDAO()
         doacoes = doacaoDAO.listar_todos()
         for d in doacoes:
-            print("*** Código: " + str(d.codigo) + " - Nome: " + d.nome + " - Login: " + d.login + " - Senha: " + d.senha + " ***")
+            print("*** Id: " + str(d.id_doacao) + " - Local: " + d.local + " - Número de beneficiários: " + d.num_beneficiados + " - Número de voluntários: " + d.num_voluntarios + " - Id do tipo de doação: " + d.id_tipo_doacao + " - Id da ação: " + d.id_acao + " - Id do patrocinador: " + d.id_patrocinador + " ***")
         print("*** " + str(len(doacoes)) + " doação(ões) encontrada(s) ***")
         self.menu_cadastrar_doacoes()
 
@@ -51,25 +51,27 @@ class DoacaoMenu(object):
         print("==========================================")
         print("Listar uma Doação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código da doação: "))
+        id_doacao = int(input("Digite o id da doação: "))
         doacaoDAO = DoacaoDAO()
-        doacao = doacaoDAO.listar(codigo)
+        doacao = doacaoDAO.listar(id_doacao)
         if doacao is not None:
-            print("*** Código: " + str(doacao.codigo) + " - Nome: " + doacao.nome + " - Login: " + doacao.login + " - Senha: " + doacao.senha + " ***")
+            print("*** Id: " + str(doacao.id_doacao) + " - Local: " + doacao.local + " - Número de beneficiários: " + doacao.num_beneficiados + " - Número de voluntários: " + doacao.num_voluntarios + " - Id do tipo de doação: " + doacao.id_tipo_doacao + " - Id da ação: " + doacao.id_acao + " - Id do patrocinador: " + doacao.id_patrocinador + " ***")
         else:
-            print("*** Não foi possível localizar este voluntário ***")
+            print("*** Não foi possível localizar esta doação ***")
         self.menu_cadastrar_doacoes()
 
     def menu_cadastrar_doacoes_inserir_uma_doacao(self):
         print("==========================================")
         print("Inserir uma Nova Doação")
         print("==========================================")
-        codigo = int(input("Digite o código da nova doação: "))
-        nome = input("Digite o nome da nova doação: ")
-        login = input("Digite o login da nova doação: ")
-        senha = input("Digite a senha da nova doação: ")
+        local = input("Digite o local da nova doação: ")
+        num_beneficiados = input("Digite o número de beneficiários da nova doação: ")
+        num_voluntarios = input("Digite o número de voluntários da nova doação: ")
+        id_tipo_doacao = input("Digite o id do tipo da nova doação: ")
+        id_acao = input("Digite o id da ação da nova doação: ")
+        id_patrocinador = input("Digite o id do patrocinador da nova doação: ")
         doacaoDAO = DoacaoDAO()
-        sucesso = doacaoDAO.inserir(codigo, nome, login, senha)
+        sucesso = doacaoDAO.inserir(local, num_beneficiados, num_voluntarios, id_tipo_doacao, id_acao, id_patrocinador)
         if sucesso == True:
             print("*** Doação inserida com sucesso ***")
         else:
@@ -80,12 +82,15 @@ class DoacaoMenu(object):
         print("==========================================")
         print("Atualizar uma Doação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código da doação: "))
-        nome = input("Digite o novo nome da doação: ")
-        login = input("Digite o novo login da doação: ")
-        senha = input("Digite a nova senha da doação: ")
+        id_doacao = int(input("Digite o id da doação: "))
+        local = input("Digite o novo local da nova doação: ")
+        num_beneficiados = input("Digite o novo número de beneficiários da doação: ")
+        num_voluntarios = input("Digite o novo número de voluntários da doação: ")
+        id_tipo_doacao = input("Digite o id do novo tipo da doação: ")
+        id_acao = input("Digite o id da nova ação da doação: ")
+        id_patrocinador = input("Digite o id do novo patrocinador da doação: ")
         doacaoDAO = DoacaoDAO()
-        sucesso = doacaoDAO.atualizar(codigo, nome, login, senha)
+        sucesso = doacaoDAO.atualizar(id_doacao, local, num_beneficiados, num_voluntarios, id_tipo_doacao, id_acao, id_patrocinador)
         if sucesso == True:
             print("*** Doação atualizada com sucesso ***")
         else:
@@ -96,9 +101,9 @@ class DoacaoMenu(object):
         print("==========================================")
         print("Remover uma doação existente")
         print("==========================================")
-        codigo = int(input("Digite o código da doação: "))
+        id_doacao = int(input("Digite o id da doação: "))
         doacaoDAO = DoacaoDAO()
-        sucesso = doacaoDAO.remover(codigo)
+        sucesso = doacaoDAO.remover(id_doacao)
         if sucesso == True:
             print("*** Doação removida com sucesso ***")
         else:

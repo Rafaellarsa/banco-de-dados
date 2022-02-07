@@ -43,7 +43,7 @@ class CategoriaPatrocinioMenu(object):
         categoriaPatrocinioDAO = CategoriaPatrocinioDAO()
         categoriasPatrocinio = categoriaPatrocinioDAO.listar_todos()
         for cp in categoriasPatrocinio:
-            print("*** Código: " + str(cp.codigo) + " - Nome: " + cp.nome + " - Login: " + cp.login + " - Senha: " + cp.senha + " ***")
+            print("*** Id: " + str(cp.id_categoria_patrocinio) + " - Categoria: " + cp.categoria + " - Descrição: " + cp.descricao + " ***")
         print("*** " + str(len(categoriasPatrocinio)) + " categoria(s) de patrocínio encontrada(s) ***")
         self.menu_cadastrar_categorias_patrocinio()
 
@@ -51,11 +51,11 @@ class CategoriaPatrocinioMenu(object):
         print("==========================================")
         print("Listar uma Categoria de Patrocínio Existente")
         print("==========================================")
-        codigo = int(input("Digite o código da categoria de patrocínio: "))
+        id_categoria_patrocinio = int(input("Digite o id da categoria de patrocínio: "))
         categoriaPatrocinioDAO = CategoriaPatrocinioDAO()
-        categoriaPatrocinio = categoriaPatrocinioDAO.listar(codigo)
+        categoriaPatrocinio = categoriaPatrocinioDAO.listar(id_categoria_patrocinio)
         if categoriaPatrocinio is not None:
-            print("*** Código: " + str(categoriaPatrocinio.codigo) + " - Nome: " + categoriaPatrocinio.nome + " - Login: " + categoriaPatrocinio.login + " - Senha: " + categoriaPatrocinio.senha + " ***")
+            print("*** Id: " + str(categoriaPatrocinio.id_categoria_patrocinio) + " - Tipo: " + categoriaPatrocinio.categoria + " - Descrição: " + categoriaPatrocinio.descricao + " ***")
         else:
             print("*** Não foi possível localizar esta categoria de patrocínio ***")
         self.menu_cadastrar_categorias_patrocinio()
@@ -64,12 +64,10 @@ class CategoriaPatrocinioMenu(object):
         print("==========================================")
         print("Inserir uma Nova Categoria de Patrocínio")
         print("==========================================")
-        codigo = int(input("Digite o código da nova categoria de patrocínio: "))
-        nome = input("Digite o nome da nova categoria de patrocínio: ")
-        login = input("Digite o login da nova categoria de patrocínio: ")
-        senha = input("Digite a senha da nova categoria de patrocínio: ")
+        categoria = input("Digite o nome da nova categoria de patrocínio: ")
+        descricao = input("Digite a descrição da nova categoria de patrocínio: ")
         categoriaPatrocinioDAO = CategoriaPatrocinioDAO()
-        sucesso = categoriaPatrocinioDAO.inserir(codigo, nome, login, senha)
+        sucesso = categoriaPatrocinioDAO.inserir(categoria, descricao)
         if sucesso == True:
             print("*** Categoria de Patrocínio inserida com sucesso ***")
         else:
@@ -80,12 +78,11 @@ class CategoriaPatrocinioMenu(object):
         print("==========================================")
         print("Atualizar uma Categoria de Patrocínio Existente")
         print("==========================================")
-        codigo = int(input("Digite o código da categoria de patrocínio: "))
-        nome = input("Digite o novo nome da categoria de patrocínio: ")
-        login = input("Digite o novo login da categoria de patrocínio: ")
-        senha = input("Digite a nova senha da categoria de patrocínio: ")
+        id_categoria_patrocinio = int(input("Digite o id da categoria de patrocínio: "))
+        categoria = input("Digite o novo nome da categoria de patrocínio: ")
+        descricao = input("Digite a nova descrição da categoria de patrocínio: ")
         categoriaPatrocinioDAO = CategoriaPatrocinioDAO()
-        sucesso = categoriaPatrocinioDAO.atualizar(codigo, nome, login, senha)
+        sucesso = categoriaPatrocinioDAO.atualizar(id_categoria_patrocinio, categoria, descricao)
         if sucesso == True:
             print("*** Categoria de Patrocínio atualizada com sucesso ***")
         else:
@@ -96,9 +93,9 @@ class CategoriaPatrocinioMenu(object):
         print("==========================================")
         print("Remover uma categoria de patrocínio existente")
         print("==========================================")
-        codigo = int(input("Digite o código da categoria de patrocínio: "))
+        id_categoria_patrocinio = int(input("Digite o id da categoria de patrocínio: "))
         categoriaPatrocinioDAO = CategoriaPatrocinioDAO()
-        sucesso = categoriaPatrocinioDAO.remover(codigo)
+        sucesso = categoriaPatrocinioDAO.remover(id_categoria_patrocinio)
         if sucesso == True:
             print("*** Categoria de Patrocínio removida com sucesso ***")
         else:

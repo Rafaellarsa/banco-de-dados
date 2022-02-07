@@ -1,21 +1,26 @@
 import traceback
 import psycopg2
 from Acao.Acao import Acao
+import PsycopgParameters
 
 class AcaoDAO(object):
     def listar_todos(self):
         resultados = []
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("SELECT codigo, nome, login, senha FROM pessoa")
+            cursor.execute("SELECT id_acao, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario FROM public.\"Acao\"")
             registros = cursor.fetchall()
             for r in registros:
                 a = Acao()
-                a.codigo = r[0]
-                a.nome = r[1]
-                a.login = r[2]
-                a.senha = r[3]
+                a.id_acao = r[0]
+                a.local = r[1]
+                a.num_beneficiados = r[2]
+                a.num_voluntarios = r[3]
+                a.id_tipo_acao = r[4]
+                a.id_voluntario = r[5]
                 resultados.append(a)
         except (Exception, psycopg2.Error) as error:
             traceback.print_exc()
@@ -25,19 +30,23 @@ class AcaoDAO(object):
                 connection.close()
         return resultados
 
-    def listar(self, codigo):
+    def listar(self, id_acao):
         a = None
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("SELECT codigo, nome, login, senha FROM pessoa WHERE codigo = " + str(codigo))
+            cursor.execute("SELECT id_acao, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario FROM public.\"Acao\" WHERE id_acao = " + str(id_acao))
             r = cursor.fetchone();
             if cursor.rowcount == 1:
                 a = Acao()
-                a.codigo = r[0]
-                a.nome = r[1]
-                a.login = r[2]
-                a.senha = r[3]
+                a.id_acao = r[0]
+                a.local = r[1]
+                a.num_beneficiados = r[2]
+                a.num_voluntarios = r[3]
+                a.id_tipo_acao = r[4]
+                a.id_voluntario = r[5]
         except (Exception, psycopg2.Error) as error:
             traceback.print_exc()
         finally:
@@ -46,12 +55,14 @@ class AcaoDAO(object):
                 connection.close()
         return a
 
-    def inserir(self, codigo, nome, login, senha):
+    def inserir(self, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO pessoa (codigo, nome, login, senha) VALUES (" + str(codigo) + ", '" + nome + "', '" + login + "', '" + senha + "')")
+            cursor.execute("INSERT INTO public.\"Acao\" (local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario) VALUES ('" + local + "', '" + num_beneficiados + "', '" + num_voluntarios + "', '" + id_tipo_acao + "', '" + id_voluntario + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -62,12 +73,14 @@ class AcaoDAO(object):
                 connection.close()
         return sucesso
 
-    def atualizar(self, codigo, nome, login, senha):
+    def atualizar(self, id_acao, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE pessoa SET nome = '" + nome + "', login = '" + login + "', senha = '" + senha + "' WHERE codigo = " + str(codigo) + "")
+            cursor.execute("UPDATE public.\"Acao\" SET local = '" + local + "', num_beneficiados = '" + num_beneficiados + "', num_voluntarios = '" + num_voluntarios + "', id_tipo_acao = '" + id_tipo_acao + "', id_voluntario = '" + id_voluntario + "' WHERE id_acao = " + str(id_acao) + "")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -78,12 +91,14 @@ class AcaoDAO(object):
                 connection.close()
         return sucesso
 
-    def remover(self, codigo):
+    def remover(self, id_acao):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM pessoa WHERE codigo = " + str(codigo) + "")
+            cursor.execute("DELETE FROM public.\"Acao\" WHERE id_acao = " + str(id_acao) + "")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

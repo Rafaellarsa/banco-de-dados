@@ -1,32 +1,24 @@
 class TipoAcao(object):
     @property
-    def codigo(self):
-        return self._codigo
+    def id_tipo_acao(self):
+        return self._id_tipo_acao
 
-    @codigo.setter
-    def codigo(self, codigo):
-        self._codigo = codigo
-
-    @property
-    def nome(self):
-        return self._nome
-
-    @nome.setter
-    def nome(self, nome):
-        self._nome = nome
+    @id_tipo_acao.setter
+    def id_tipo_acao(self, id_tipo_acao):
+        self._id_tipo_acao = id_tipo_acao
 
     @property
-    def login(self):
-        return self._login
+    def tipo(self):
+        return self._tipo
 
-    @login.setter
-    def login(self, login):
-        self._login = login
+    @tipo.setter
+    def tipo(self, tipo):
+        self._tipo = tipo
 
     @property
-    def senha(self):
-        return self._senha
+    def descricao(self):
+        return self._descricao
 
-    @senha.setter
-    def senha(self, senha):
-        self._senha = senha
+    @descricao.setter
+    def descricao(self, descricao):
+        self._descricao = descricao

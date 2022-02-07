@@ -42,8 +42,8 @@ class TipoAcaoMenu(object):
         print("==========================================")
         tipoAcaoDAO = TipoAcaoDAO()
         tiposAcao = tipoAcaoDAO.listar_todos()
-        for td in tiposAcao:
-            print("*** Código: " + str(td.codigo) + " - Nome: " + td.nome + " - Login: " + td.login + " - Senha: " + td.senha + " ***")
+        for ta in tiposAcao:
+            print("*** Id: " + str(ta.id_tipo_acao) + " - Tipo: " + ta.tipo + " - Descrição: " + ta.descricao + " ***")
         print("*** " + str(len(tiposAcao)) + " tipo(s) de ação encontrado(s) ***")
         self.menu_cadastrar_tipos_acao()
 
@@ -51,11 +51,11 @@ class TipoAcaoMenu(object):
         print("==========================================")
         print("Listar um Tipo de Ação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de ação: "))
+        id_tipo_acao = int(input("Digite o id do tipo de ação: "))
         tipoAcaoDAO = TipoAcaoDAO()
-        tipoAcao = tipoAcaoDAO.listar(codigo)
+        tipoAcao = tipoAcaoDAO.listar(id_tipo_acao)
         if tipoAcao is not None:
-            print("*** Código: " + str(tipoAcao.codigo) + " - Nome: " + tipoAcao.nome + " - Login: " + tipoAcao.login + " - Senha: " + tipoAcao.senha + " ***")
+            print("*** Id: " + str(tipoAcao.id_tipo_acao) + " - Tipo: " + tipoAcao.tipo + " - Descrição: " + tipoAcao.descricao + " ***")
         else:
             print("*** Não foi possível localizar este tipo de ação ***")
         self.menu_cadastrar_tipos_acao()
@@ -64,12 +64,10 @@ class TipoAcaoMenu(object):
         print("==========================================")
         print("Inserir um Novo Tipo de Ação")
         print("==========================================")
-        codigo = int(input("Digite o código do novo tipo de ação: "))
-        nome = input("Digite o nome do novo tipo de ação: ")
-        login = input("Digite o login do novo tipo de ação: ")
-        senha = input("Digite a senha do novo tipo de ação: ")
+        tipo = input("Digite o nome do novo tipo de ação: ")
+        descricao = input("Digite a descrição do novo tipo de ação: ")
         tipoAcaoDAO = TipoAcaoDAO()
-        sucesso = tipoAcaoDAO.inserir(codigo, nome, login, senha)
+        sucesso = tipoAcaoDAO.inserir(tipo, descricao)
         if sucesso == True:
             print("*** Tipo de Ação inserido com sucesso ***")
         else:
@@ -80,12 +78,11 @@ class TipoAcaoMenu(object):
         print("==========================================")
         print("Atualizar um Tipo de Ação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de ação: "))
-        nome = input("Digite o novo nome do tipo de ação: ")
-        login = input("Digite o novo login do tipo de ação: ")
-        senha = input("Digite a nova senha do tipo de ação: ")
+        id_tipo_acao = int(input("Digite o id do tipo de ação: "))
+        tipo = input("Digite o novo nome do tipo de ação: ")
+        descricao = input("Digite a nova descrição do tipo de ação: ")
         tipoAcaoDAO = TipoAcaoDAO()
-        sucesso = tipoAcaoDAO.atualizar(codigo, nome, login, senha)
+        sucesso = tipoAcaoDAO.atualizar(id_tipo_acao, tipo, descricao)
         if sucesso == True:
             print("*** Tipo de Ação atualizado com sucesso ***")
         else:
@@ -96,9 +93,9 @@ class TipoAcaoMenu(object):
         print("==========================================")
         print("Remover um tipo de ação existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de ação: "))
+        id_tipo_acao = int(input("Digite o id do tipo de ação: "))
         tipoAcaoDAO = TipoAcaoDAO()
-        sucesso = tipoAcaoDAO.remover(codigo)
+        sucesso = tipoAcaoDAO.remover(id_tipo_acao)
         if sucesso == True:
             print("*** Tipo de Ação removido com sucesso ***")
         else:

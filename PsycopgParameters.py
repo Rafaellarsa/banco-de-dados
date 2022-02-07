@@ -1,0 +1,11 @@
+user = "postgres"
+password = "postgres"
+host = "localhost"
+port = "5432"
+database = "voluntariado"
+
+# user = "postgres"
+# password = "ufc123"
+# host = "localhost"
+# port = "5432"
+# database = "cadastro"

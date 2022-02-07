@@ -1,11 +1,11 @@
 class Usuario(object):
     @property
-    def codigo(self):
-        return self._codigo
+    def id_usuario(self):
+        return self._id_usuario
 
-    @codigo.setter
-    def codigo(self, codigo):
-        self._codigo = codigo
+    @id_usuario.setter
+    def id_usuario(self, id_usuario):
+        self._id_usuario = id_usuario
 
     @property
     def nome(self):
@@ -16,12 +16,20 @@ class Usuario(object):
         self._nome = nome
 
     @property
-    def login(self):
-        return self._login
+    def cpf(self):
+        return self._cpf
 
-    @login.setter
-    def login(self, login):
-        self._login = login
+    @cpf.setter
+    def cpf(self, cpf):
+        self._cpf = cpf
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        self._email = email
 
     @property
     def senha(self):
@@ -30,3 +38,11 @@ class Usuario(object):
     @senha.setter
     def senha(self, senha):
         self._senha = senha
+        
+    @property
+    def telefone(self):
+        return self._telefone
+
+    @telefone.setter
+    def telefone(self, telefone):
+        self._telefone = telefone

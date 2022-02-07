@@ -1,12 +1,15 @@
 import traceback
 import psycopg2
 from Voluntario.Voluntario import Voluntario
+import PsycopgParameters
 
 class VoluntarioDAO(object):
     def listar_todos(self):
         resultados = []
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
             cursor.execute("SELECT codigo, nome, login, senha FROM pessoa")
             registros = cursor.fetchall()
@@ -28,7 +31,9 @@ class VoluntarioDAO(object):
     def listar(self, codigo):
         v = None
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
             cursor.execute("SELECT codigo, nome, login, senha FROM pessoa WHERE codigo = " + str(codigo))
             r = cursor.fetchone();
@@ -49,7 +54,9 @@ class VoluntarioDAO(object):
     def inserir(self, codigo, nome, login, senha):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
             cursor.execute("INSERT INTO pessoa (codigo, nome, login, senha) VALUES (" + str(codigo) + ", '" + nome + "', '" + login + "', '" + senha + "')")
             connection.commit()
@@ -65,7 +72,9 @@ class VoluntarioDAO(object):
     def atualizar(self, codigo, nome, login, senha):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
             cursor.execute("UPDATE pessoa SET nome = '" + nome + "', login = '" + login + "', senha = '" + senha + "' WHERE codigo = " + str(codigo) + "")
             connection.commit()
@@ -81,7 +90,9 @@ class VoluntarioDAO(object):
     def remover(self, codigo):
         sucesso = False
         try:
-            connection = psycopg2.connect(user="postgres", password="ufc123", host="localhost", port="5432", database="cadastro")
+            connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
+                                          host=PsycopgParameters.host, port=PsycopgParameters.port,
+                                          database=PsycopgParameters.database)
             cursor = connection.cursor()
             cursor.execute("DELETE FROM pessoa WHERE codigo = " + str(codigo) + "")
             connection.commit()

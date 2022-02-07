@@ -43,7 +43,7 @@ class TipoDoacaoMenu(object):
         tipoDoacaoDAO = TipoDoacaoDAO()
         tiposDoacao = tipoDoacaoDAO.listar_todos()
         for td in tiposDoacao:
-            print("*** Código: " + str(td.codigo) + " - Nome: " + td.nome + " - Login: " + td.login + " - Senha: " + td.senha + " ***")
+            print("*** Id: " + str(td.id_tipo_doacao) + " - Tipo: " + td.tipo + " - Descrição: " + td.descricao + " ***")
         print("*** " + str(len(tiposDoacao)) + " tipo(s) de doação encontrado(s) ***")
         self.menu_cadastrar_tipos_doacao()
 
@@ -51,11 +51,11 @@ class TipoDoacaoMenu(object):
         print("==========================================")
         print("Listar um Tipo de Doação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de doação: "))
+        id_tipo_doacao = int(input("Digite o id do tipo de doação: "))
         tipoDoacaoDAO = TipoDoacaoDAO()
-        tipoDoacao = tipoDoacaoDAO.listar(codigo)
+        tipoDoacao = tipoDoacaoDAO.listar(id_tipo_doacao)
         if tipoDoacao is not None:
-            print("*** Código: " + str(tipoDoacao.codigo) + " - Nome: " + tipoDoacao.nome + " - Login: " + tipoDoacao.login + " - Senha: " + tipoDoacao.senha + " ***")
+            print("*** Id: " + str(tipoDoacao.id_tipo_doacao) + " - Tipo: " + tipoDoacao.tipo + " - Descrição: " + tipoDoacao.descricao + " ***")
         else:
             print("*** Não foi possível localizar este tipo de doação ***")
         self.menu_cadastrar_tipos_doacao()
@@ -64,12 +64,10 @@ class TipoDoacaoMenu(object):
         print("==========================================")
         print("Inserir um Novo Tipo de Doação")
         print("==========================================")
-        codigo = int(input("Digite o código do novo tipo de doação: "))
-        nome = input("Digite o nome do novo tipo de doação: ")
-        login = input("Digite o login do novo tipo de doação: ")
-        senha = input("Digite a senha do novo tipo de doação: ")
+        tipo = input("Digite o nome do novo tipo de doação: ")
+        descricao = input("Digite a descrição do novo tipo de doação: ")
         tipoDoacaoDAO = TipoDoacaoDAO()
-        sucesso = tipoDoacaoDAO.inserir(codigo, nome, login, senha)
+        sucesso = tipoDoacaoDAO.inserir(tipo, descricao)
         if sucesso == True:
             print("*** Tipo de Doação inserido com sucesso ***")
         else:
@@ -80,12 +78,11 @@ class TipoDoacaoMenu(object):
         print("==========================================")
         print("Atualizar um Tipo de Doação Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de doação: "))
-        nome = input("Digite o novo nome do tipo de doação: ")
-        login = input("Digite o novo login do tipo de doação: ")
-        senha = input("Digite a nova senha do tipo de doação: ")
+        id_tipo_doacao = int(input("Digite o id do tipo de doação: "))
+        tipo = input("Digite o novo nome do tipo de doação: ")
+        descricao = input("Digite a nova descrição do tipo de doação: ")
         tipoDoacaoDAO = TipoDoacaoDAO()
-        sucesso = tipoDoacaoDAO.atualizar(codigo, nome, login, senha)
+        sucesso = tipoDoacaoDAO.atualizar(id_tipo_doacao, tipo, descricao)
         if sucesso == True:
             print("*** Tipo de Doação atualizado com sucesso ***")
         else:
@@ -96,9 +93,9 @@ class TipoDoacaoMenu(object):
         print("==========================================")
         print("Remover um tipo de doação existente")
         print("==========================================")
-        codigo = int(input("Digite o código do tipo de doação: "))
+        id_tipo_doacao = int(input("Digite o id do tipo de doação: "))
         tipoDoacaoDAO = TipoDoacaoDAO()
-        sucesso = tipoDoacaoDAO.remover(codigo)
+        sucesso = tipoDoacaoDAO.remover(id_tipo_doacao)
         if sucesso == True:
             print("*** Tipo de Doação removido com sucesso ***")
         else:

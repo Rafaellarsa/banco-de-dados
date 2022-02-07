@@ -1,32 +1,48 @@
 class Acao(object):
     @property
-    def codigo(self):
-        return self._codigo
+    def id_acao(self):
+        return self._id_acao
 
-    @codigo.setter
-    def codigo(self, codigo):
-        self._codigo = codigo
-
-    @property
-    def nome(self):
-        return self._nome
-
-    @nome.setter
-    def nome(self, nome):
-        self._nome = nome
+    @id_acao.setter
+    def id_acao(self, id_acao):
+        self._id_acao = id_acao
 
     @property
-    def login(self):
-        return self._login
+    def local(self):
+        return self._local
 
-    @login.setter
-    def login(self, login):
-        self._login = login
+    @local.setter
+    def local(self, local):
+        self._local = local
 
     @property
-    def senha(self):
-        return self._senha
+    def num_beneficiados(self):
+        return self._num_beneficiados
 
-    @senha.setter
-    def senha(self, senha):
-        self._senha = senha
+    @num_beneficiados.setter
+    def num_beneficiados(self, num_beneficiados):
+        self._num_beneficiados = num_beneficiados
+
+    @property
+    def num_voluntarios(self):
+        return self._num_voluntarios
+
+    @num_voluntarios.setter
+    def num_voluntarios(self, num_voluntarios):
+        self._num_voluntarios = num_voluntarios
+
+    @property
+    def id_tipo_acao(self):
+        return self._id_tipo_acao
+
+    @id_tipo_acao.setter
+    def id_tipo_acao(self, id_tipo_acao):
+        self._id_tipo_acao = id_tipo_acao
+
+    @property
+    def id_voluntario(self):
+        return self._id_voluntario
+
+    @id_voluntario.setter
+    def id_voluntario(self, id_voluntario):
+        self._id_voluntario = id_voluntario
