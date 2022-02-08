@@ -26,4 +26,4 @@ Projeto para a disciplina de Banco de Dados I (2021.2), do professor Leonardo Ol
 3. Importar o projeto no Pycharm (ou na IDE de sua preferencia)
 4. Abrir o arquivo [PsycopgParameters.py](https://github.com/Rafaellarsa/banco-de-dados/blob/master/PsycopgParameters.py)
     4.1. Alterar os campos password, port e user para ficar de acordo ao que foi configurado no pgadmin.
-6. Executar o arquivo main.py
+6. Executar o arquivo [main.py](https://github.com/Rafaellarsa/banco-de-dados/blob/master/main.py).
