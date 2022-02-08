@@ -2,13 +2,21 @@
 Projeto para a disciplina de Banco de Dados I (2021.2), do professor Leonardo Oliveira.
 
 ## Equipe
-- Ellen Pessoa;
-- Ivna Almeida;
-- Rafaella Sampaio;
-- Rebecca Cavalcante;
-- Vaneska Sousa.
+| Nome               | Matricula |  
+|--------------------|-----------|
+| Ellen Pessoa       | 473928    |   
+| Ivna Almeida       | 469887    |    
+| Rafaella Sampaio   | 469886    |  
+| Rebecca Cavalcante | 473196    | 
+| Vaneska Sousa      | 476389    | 
 
 ## Sobre o Projeto:
+
+### Quick Finder: Artefatos
+* Apresentação em vídeo: https://drive.google.com/file/d/1N-DZYbYjv5vYluKupx8RRww8H79styOf/view?usp=sharing
+* Repositório: https://github.com/Rafaellarsa/banco-de-dados
+* MER: https://i.imgur.com/BEUvB4a.png
+* Banco de dados (.sql): https://github.com/Rafaellarsa/banco-de-dados/tree/master/database
 
 * MER - Modelo Relacional
 ![](https://i.imgur.com/BEUvB4a.png)
