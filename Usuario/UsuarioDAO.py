@@ -62,7 +62,7 @@ class UsuarioDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Usuario\" (nome, cpf, email, senha, telefone) VALUES ('" + nome + "', '" + cpf + "', '" + email + "', '" + senha + "', '" + telefone + "')")
+            cursor.execute("INSERT INTO public.\"Usuario\" (nome, cpf, email, senha, telefone) VALUES ('" + nome + "', " + cpf + ", '" + email + "', '" + senha + "', '" + telefone + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -80,7 +80,7 @@ class UsuarioDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE public.\"Usuario\" SET nome = '" + nome + "', cpf = '" + cpf + "', email = '" + email + "', senha = '" + senha + "', telefone = '" + telefone + "' WHERE id_usuario = " + str(id_usuario))
+            cursor.execute("UPDATE public.\"Usuario\" SET nome = '" + nome + "', cpf = " + cpf + ", email = '" + email + "', senha = '" + senha + "', telefone = '" + telefone + "' WHERE id_usuario = " + str(id_usuario))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

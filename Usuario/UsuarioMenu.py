@@ -43,7 +43,7 @@ class UsuarioMenu(object):
         usuarioDAO = UsuarioDAO()
         usuarios = usuarioDAO.listar_todos()
         for u in usuarios:
-            print("*** Id: " + str(u.id_usuario) + " - Nome: " + u.nome + " - Cpf: " + u.cpf + " - Email: " + u.email + " - Senha: " + u.senha + " - Telefone: " + u.telefone + " ***")
+            print("*** Id: " + str(u.id_usuario) + " - Nome: " + u.nome + " - Cpf: " + str(u.cpf) + " - Email: " + u.email + " - Senha: " + u.senha + " - Telefone: " + u.telefone + " ***")
         print("*** " + str(len(usuarios)) + " usuário(s) encontrado(s) ***")
         self.menu_cadastrar_usuarios()
 
@@ -55,7 +55,7 @@ class UsuarioMenu(object):
         usuarioDAO = UsuarioDAO()
         usuario = usuarioDAO.listar(codigo)
         if usuario is not None:
-            print("*** Id: " + str(usuario.id_usuario) + " - Nome: " + usuario.nome + " - Cpf: " + usuario.cpf + " - Email: " + usuario.email + " - Senha: " + usuario.senha + " - Telefone: " + usuario.telefone + " ***")
+            print("*** Id: " + str(usuario.id_usuario) + " - Nome: " + usuario.nome + " - Cpf: " + str(usuario.cpf) + " - Email: " + usuario.email + " - Senha: " + usuario.senha + " - Telefone: " + usuario.telefone + " ***")
         else:
             print("*** Não foi possível localizar este usuário ***")
         self.menu_cadastrar_usuarios()

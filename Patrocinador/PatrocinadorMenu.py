@@ -43,7 +43,7 @@ class PatrocinadorMenu(object):
         patrocinadorDAO = PatrocinadorDAO()
         patrocinadores = patrocinadorDAO.listar_todos()
         for p in patrocinadores:
-            print("*** Id: " + str(p.id_usuario) + " - Periodicidade: " + p.periodicidade + " - Id da categoria de patrocínio: " + p.id_categoria_patrocinio + " ***")
+            print("*** Id: " + str(p.id_usuario) + " - Periodicidade: " + p.periodicidade + " - Id da categoria de patrocínio: " + str(p.id_categoria_patrocinio) + " ***")
         print("*** " + str(len(patrocinadores)) + " patrocinador(es) encontrado(s) ***")
         self.menu_cadastrar_patrocinadores()
 
@@ -55,7 +55,7 @@ class PatrocinadorMenu(object):
         patrocinadorDAO = PatrocinadorDAO()
         patrocinador = patrocinadorDAO.listar(codigo)
         if patrocinador is not None:
-            print("*** Id: " + str(patrocinador.id_usuario) + " - Periodicidade: " + patrocinador.periodicidade + " - Id da categoria de patrocínio: " + patrocinador.id_categoria_patrocinio + " ***")
+            print("*** Id: " + str(patrocinador.id_usuario) + " - Periodicidade: " + patrocinador.periodicidade + " - Id da categoria de patrocínio: " + str(patrocinador.id_categoria_patrocinio) + " ***")
         else:
             print("*** Não foi possível localizar este patrocinador ***")
         self.menu_cadastrar_patrocinadores()

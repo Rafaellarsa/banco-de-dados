@@ -1,0 +1,527 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2022-02-07 19:49:44
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 209 (class 1259 OID 16858)
+-- Name: Acao; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Acao" (
+    id_acao integer NOT NULL,
+    local character varying NOT NULL,
+    num_beneficiados character varying NOT NULL,
+    num_voluntarios character varying NOT NULL,
+    id_tipo_acao integer NOT NULL,
+    id_voluntario_responsavel integer NOT NULL
+);
+
+
+ALTER TABLE public."Acao" OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16863)
+-- Name: Acao_id_acao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Acao" ALTER COLUMN id_acao ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Acao_id_acao_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 211 (class 1259 OID 16864)
+-- Name: Categoria_Patrocinio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Categoria_Patrocinio" (
+    id_categoria_patrocinio integer NOT NULL,
+    categoria character varying NOT NULL,
+    descricao character varying NOT NULL
+);
+
+
+ALTER TABLE public."Categoria_Patrocinio" OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16869)
+-- Name: Categoria_Patrocinio_id_categoria_patrocinio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Categoria_Patrocinio" ALTER COLUMN id_categoria_patrocinio ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Categoria_Patrocinio_id_categoria_patrocinio_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 213 (class 1259 OID 16870)
+-- Name: Doacao; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Doacao" (
+    id_doacao integer NOT NULL,
+    id_tipo_doacao integer NOT NULL,
+    id_acao integer,
+    id_patrocinador integer NOT NULL,
+    valor_doacao integer NOT NULL,
+    data_doacao character varying NOT NULL
+);
+
+
+ALTER TABLE public."Doacao" OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16875)
+-- Name: Doacao_id_doacao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Doacao" ALTER COLUMN id_doacao ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Doacao_id_doacao_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 216 (class 1259 OID 16881)
+-- Name: Patrocinador; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Patrocinador" (
+    id_usuario integer NOT NULL,
+    periodicidade character varying,
+    id_categoria_patrocinio integer NOT NULL
+);
+
+
+ALTER TABLE public."Patrocinador" OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16886)
+-- Name: Tipo_Acao; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Tipo_Acao" (
+    id_tipo_acao integer NOT NULL,
+    tipo character varying NOT NULL,
+    descricao character varying NOT NULL
+);
+
+
+ALTER TABLE public."Tipo_Acao" OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16891)
+-- Name: Tipo_Acao_id_tipo_acao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Tipo_Acao" ALTER COLUMN id_tipo_acao ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Tipo_Acao_id_tipo_acao_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 219 (class 1259 OID 16892)
+-- Name: Tipo_Doacao; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Tipo_Doacao" (
+    id_tipo_doacao integer NOT NULL,
+    tipo character varying NOT NULL,
+    descricao character varying NOT NULL
+);
+
+
+ALTER TABLE public."Tipo_Doacao" OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16897)
+-- Name: Tipo_Doacao_id_tipo_doacao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Tipo_Doacao" ALTER COLUMN id_tipo_doacao ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Tipo_Doacao_id_tipo_doacao_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 215 (class 1259 OID 16876)
+-- Name: Usuario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Usuario" (
+    id_usuario integer NOT NULL,
+    nome character varying NOT NULL,
+    cpf numeric NOT NULL,
+    email character varying NOT NULL,
+    senha character varying NOT NULL,
+    telefone character varying NOT NULL
+);
+
+
+ALTER TABLE public."Usuario" OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16898)
+-- Name: Usuario_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."Usuario" ALTER COLUMN id_usuario ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public."Usuario_id_usuario_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 222 (class 1259 OID 16899)
+-- Name: Voluntario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Voluntario" (
+    id_usuario integer NOT NULL,
+    data_inicio character varying NOT NULL
+);
+
+
+ALTER TABLE public."Voluntario" OWNER TO postgres;
+
+--
+-- TOC entry 3360 (class 0 OID 16858)
+-- Dependencies: 209
+-- Data for Name: Acao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3362 (class 0 OID 16864)
+-- Dependencies: 211
+-- Data for Name: Categoria_Patrocinio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Categoria_Patrocinio" OVERRIDING SYSTEM VALUE VALUES (1, 'Ouro', 'maior cota de patrocinio');
+INSERT INTO public."Categoria_Patrocinio" OVERRIDING SYSTEM VALUE VALUES (2, 'Bronze', 'menor cota de patrocinio');
+INSERT INTO public."Categoria_Patrocinio" OVERRIDING SYSTEM VALUE VALUES (3, 'Prata', 'cota intermediaria');
+INSERT INTO public."Categoria_Patrocinio" OVERRIDING SYSTEM VALUE VALUES (4, 'Doador Avulso', 'faz uma doação unica sem compromentimento com recorrencia');
+
+
+--
+-- TOC entry 3364 (class 0 OID 16870)
+-- Dependencies: 213
+-- Data for Name: Doacao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3367 (class 0 OID 16881)
+-- Dependencies: 216
+-- Data for Name: Patrocinador; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Patrocinador" VALUES (3, 'A cada 6 meses', 4);
+INSERT INTO public."Patrocinador" VALUES (2, '1 ano', 2);
+
+
+--
+-- TOC entry 3368 (class 0 OID 16886)
+-- Dependencies: 217
+-- Data for Name: Tipo_Acao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Tipo_Acao" OVERRIDING SYSTEM VALUE VALUES (2, 'Pessoas em situação de rua', 'Dar de comer, beber e interagir com pessoas em situação de rua');
+INSERT INTO public."Tipo_Acao" OVERRIDING SYSTEM VALUE VALUES (3, 'Crianças', 'Pintar, desenhar, brincar com crianças');
+INSERT INTO public."Tipo_Acao" OVERRIDING SYSTEM VALUE VALUES (4, 'Dia das crianças', 'Comemorar o dia das crianças com atividades para elas');
+INSERT INTO public."Tipo_Acao" OVERRIDING SYSTEM VALUE VALUES (5, 'Idosos', 'Conversar, cantar, contar historias para idoso');
+
+
+--
+-- TOC entry 3370 (class 0 OID 16892)
+-- Dependencies: 219
+-- Data for Name: Tipo_Doacao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Tipo_Doacao" OVERRIDING SYSTEM VALUE VALUES (1, 'Alimentação', 'Arrecadação e doação de cestas básicas');
+INSERT INTO public."Tipo_Doacao" OVERRIDING SYSTEM VALUE VALUES (2, 'Roupas', 'Arrecadação e doação de roupas novas e usadas');
+INSERT INTO public."Tipo_Doacao" OVERRIDING SYSTEM VALUE VALUES (3, 'Material de higiene', 'Arrecadação e doação de material de higiene pessoal');
+
+
+--
+-- TOC entry 3366 (class 0 OID 16876)
+-- Dependencies: 215
+-- Data for Name: Usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Usuario" OVERRIDING SYSTEM VALUE VALUES (2, 'rafaela', 75560347595, 'rafaela@gmail.com', '1234', '87919520');
+INSERT INTO public."Usuario" OVERRIDING SYSTEM VALUE VALUES (3, 'vaneska', 12345678996, 'vaneskakaren@gmail.com', '123456', '85879192');
+
+
+--
+-- TOC entry 3373 (class 0 OID 16899)
+-- Dependencies: 222
+-- Data for Name: Voluntario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Voluntario" VALUES (2, '07/02/2022');
+
+
+--
+-- TOC entry 3379 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Acao_id_acao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Acao_id_acao_seq"', 1, false);
+
+
+--
+-- TOC entry 3380 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: Categoria_Patrocinio_id_categoria_patrocinio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Categoria_Patrocinio_id_categoria_patrocinio_seq"', 4, true);
+
+
+--
+-- TOC entry 3381 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: Doacao_id_doacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Doacao_id_doacao_seq"', 1, false);
+
+
+--
+-- TOC entry 3382 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: Tipo_Acao_id_tipo_acao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Tipo_Acao_id_tipo_acao_seq"', 5, true);
+
+
+--
+-- TOC entry 3383 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: Tipo_Doacao_id_tipo_doacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Tipo_Doacao_id_tipo_doacao_seq"', 3, true);
+
+
+--
+-- TOC entry 3384 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: Usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Usuario_id_usuario_seq"', 3, true);
+
+
+--
+-- TOC entry 3198 (class 2606 OID 16905)
+-- Name: Acao Acao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Acao"
+    ADD CONSTRAINT "Acao_pkey" PRIMARY KEY (id_acao);
+
+
+--
+-- TOC entry 3202 (class 2606 OID 16907)
+-- Name: Doacao Doacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doacao"
+    ADD CONSTRAINT "Doacao_pkey" PRIMARY KEY (id_doacao);
+
+
+--
+-- TOC entry 3208 (class 2606 OID 16909)
+-- Name: Tipo_Acao Tipo_Acao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tipo_Acao"
+    ADD CONSTRAINT "Tipo_Acao_pkey" PRIMARY KEY (id_tipo_acao);
+
+
+--
+-- TOC entry 3210 (class 2606 OID 16911)
+-- Name: Tipo_Doacao Tipo_Doacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tipo_Doacao"
+    ADD CONSTRAINT "Tipo_Doacao_pkey" PRIMARY KEY (id_tipo_doacao);
+
+
+--
+-- TOC entry 3204 (class 2606 OID 16913)
+-- Name: Usuario Usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Usuario"
+    ADD CONSTRAINT "Usuario_pkey" PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 3200 (class 2606 OID 16915)
+-- Name: Categoria_Patrocinio categoria_patrocinio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Categoria_Patrocinio"
+    ADD CONSTRAINT categoria_patrocinio_pkey PRIMARY KEY (id_categoria_patrocinio);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 16917)
+-- Name: Voluntario idusuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Voluntario"
+    ADD CONSTRAINT idusuario_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 3206 (class 2606 OID 16919)
+-- Name: Patrocinador usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Patrocinador"
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 3215 (class 2606 OID 16920)
+-- Name: Doacao id_acao; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doacao"
+    ADD CONSTRAINT id_acao FOREIGN KEY (id_doacao) REFERENCES public."Acao"(id_acao) NOT VALID;
+
+
+--
+-- TOC entry 3385 (class 0 OID 0)
+-- Dependencies: 3215
+-- Name: CONSTRAINT id_acao ON "Doacao"; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON CONSTRAINT id_acao ON public."Doacao" IS 'uma doacao é feita e depois alocada para uma ação social. Uma ação social pode ter varias doacoes. Ao cadastrar uma doacao, NÃO PRECISA ser adicionado qual a acao vai ser alocado, mas pode ser atualizado depois';
+
+
+--
+-- TOC entry 3218 (class 2606 OID 16925)
+-- Name: Patrocinador id_categoria_patrocinio; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Patrocinador"
+    ADD CONSTRAINT id_categoria_patrocinio FOREIGN KEY (id_categoria_patrocinio) REFERENCES public."Categoria_Patrocinio"(id_categoria_patrocinio);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 16930)
+-- Name: Doacao id_patrocinador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doacao"
+    ADD CONSTRAINT id_patrocinador FOREIGN KEY (id_patrocinador) REFERENCES public."Patrocinador"(id_usuario) NOT VALID;
+
+
+--
+-- TOC entry 3213 (class 2606 OID 16935)
+-- Name: Acao id_tipo_acao; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Acao"
+    ADD CONSTRAINT id_tipo_acao FOREIGN KEY (id_tipo_acao) REFERENCES public."Tipo_Acao"(id_tipo_acao);
+
+
+--
+-- TOC entry 3217 (class 2606 OID 16940)
+-- Name: Doacao id_tipo_doacao; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doacao"
+    ADD CONSTRAINT id_tipo_doacao FOREIGN KEY (id_tipo_doacao) REFERENCES public."Tipo_Doacao"(id_tipo_doacao) NOT VALID;
+
+
+--
+-- TOC entry 3219 (class 2606 OID 16945)
+-- Name: Patrocinador id_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Patrocinador"
+    ADD CONSTRAINT id_usuario FOREIGN KEY (id_usuario) REFERENCES public."Usuario"(id_usuario);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 16950)
+-- Name: Voluntario id_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Voluntario"
+    ADD CONSTRAINT id_usuario FOREIGN KEY (id_usuario) REFERENCES public."Usuario"(id_usuario);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 16955)
+-- Name: Acao id_voluntario_responsavel; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Acao"
+    ADD CONSTRAINT id_voluntario_responsavel FOREIGN KEY (id_voluntario_responsavel) REFERENCES public."Voluntario"(id_usuario) NOT VALID;
+
+
+-- Completed on 2022-02-07 19:49:45
+
+--
+-- PostgreSQL database dump complete
+--
+

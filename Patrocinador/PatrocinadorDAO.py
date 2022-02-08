@@ -57,7 +57,7 @@ class PatrocinadorDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Patrocinador\" (id_usuario, periodicidade, id_categoria_patrocinio) VALUES ('" + id_usuario + "', '" + periodicidade + "', '" + id_categoria_patrocinio + "')")
+            cursor.execute("INSERT INTO public.\"Patrocinador\" (id_usuario, periodicidade, id_categoria_patrocinio) VALUES ('" + id_usuario + "', '" + periodicidade + "', " + id_categoria_patrocinio + ")")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -75,7 +75,7 @@ class PatrocinadorDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE public.\"Patrocinador\" SET periodicidade = '" + periodicidade + "', id_categoria_patrocinio = '" + id_categoria_patrocinio + "' WHERE id_usuario = " + str(id_usuario))
+            cursor.execute("UPDATE public.\"Patrocinador\" SET periodicidade = '" + periodicidade + "', id_categoria_patrocinio = " + id_categoria_patrocinio + " WHERE id_usuario = " + str(id_usuario))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
