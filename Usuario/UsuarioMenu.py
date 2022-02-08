@@ -43,7 +43,7 @@ class UsuarioMenu(object):
         usuarioDAO = UsuarioDAO()
         usuarios = usuarioDAO.listar_todos()
         for u in usuarios:
-            print("*** Código: " + str(u.codigo) + " - Nome: " + u.nome + " - Login: " + u.login + " - Senha: " + u.senha + " ***")
+            print("*** Id: " + str(u.id_usuario) + " - Nome: " + u.nome + " - Cpf: " + u.cpf + " - Email: " + u.email + " - Senha: " + u.senha + " - Telefone: " + u.telefone + " ***")
         print("*** " + str(len(usuarios)) + " usuário(s) encontrado(s) ***")
         self.menu_cadastrar_usuarios()
 
@@ -55,7 +55,7 @@ class UsuarioMenu(object):
         usuarioDAO = UsuarioDAO()
         usuario = usuarioDAO.listar(codigo)
         if usuario is not None:
-            print("*** Código: " + str(usuario.codigo) + " - Nome: " + usuario.nome + " - Login: " + usuario.login + " - Senha: " + usuario.senha + " ***")
+            print("*** Id: " + str(usuario.id_usuario) + " - Nome: " + usuario.nome + " - Cpf: " + usuario.cpf + " - Email: " + usuario.email + " - Senha: " + usuario.senha + " - Telefone: " + usuario.telefone + " ***")
         else:
             print("*** Não foi possível localizar este usuário ***")
         self.menu_cadastrar_usuarios()
@@ -64,12 +64,13 @@ class UsuarioMenu(object):
         print("==========================================")
         print("Inserir um Novo Usuário")
         print("==========================================")
-        codigo = int(input("Digite o código do novo usuário: "))
         nome = input("Digite o nome do novo usuário: ")
-        login = input("Digite o login do novo usuário: ")
+        cpf = input("Digite o cpf do novo usuário: ")
+        email = input("Digite o email do novo usuário: ")
         senha = input("Digite a senha do novo usuário: ")
+        telefone = input("Digite o telefone do novo usuário: ")
         usuarioDAO = UsuarioDAO()
-        sucesso = usuarioDAO.inserir(codigo, nome, login, senha)
+        sucesso = usuarioDAO.inserir(nome, cpf, email, senha, telefone)
         if sucesso == True:
             print("*** Usuário inserido com sucesso ***")
         else:
@@ -80,12 +81,14 @@ class UsuarioMenu(object):
         print("==========================================")
         print("Atualizar um Usuário Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do usuário: "))
+        id_usuario = int(input("Digite o id do usuário: "))
         nome = input("Digite o novo nome do usuário: ")
-        login = input("Digite o novo login do usuário: ")
+        cpf = input("Digite o novo cpf do usuário: ")
+        email = input("Digite o novo email do usuário: ")
         senha = input("Digite a nova senha do usuário: ")
+        telefone = input("Digite o novo telefone do usuário: ")
         usuarioDAO = UsuarioDAO()
-        sucesso = usuarioDAO.atualizar(codigo, nome, login, senha)
+        sucesso = usuarioDAO.atualizar(id_usuario, nome, cpf, email, senha, telefone)
         if sucesso == True:
             print("*** Usuário atualizado com sucesso ***")
         else:
@@ -96,9 +99,9 @@ class UsuarioMenu(object):
         print("==========================================")
         print("Remover um usuário existente")
         print("==========================================")
-        codigo = int(input("Digite o código do usuário: "))
+        id_usuario = int(input("Digite o código do usuário: "))
         usuarioDAO = UsuarioDAO()
-        sucesso = usuarioDAO.remover(codigo)
+        sucesso = usuarioDAO.remover(id_usuario)
         if sucesso == True:
             print("*** Usuário removido com sucesso ***")
         else:

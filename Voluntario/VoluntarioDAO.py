@@ -11,14 +11,12 @@ class VoluntarioDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("SELECT codigo, nome, login, senha FROM pessoa")
+            cursor.execute("SELECT id_usuario, data_inicio FROM public.\"Voluntario\"")
             registros = cursor.fetchall()
             for r in registros:
                 v = Voluntario()
-                v.codigo = r[0]
-                v.nome = r[1]
-                v.login = r[2]
-                v.senha = r[3]
+                v.id_usuario = r[0]
+                v.data_inicio = r[1]
                 resultados.append(v)
         except (Exception, psycopg2.Error) as error:
             traceback.print_exc()
@@ -28,21 +26,19 @@ class VoluntarioDAO(object):
                 connection.close()
         return resultados
 
-    def listar(self, codigo):
+    def listar(self, id_usuario):
         v = None
         try:
             connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("SELECT codigo, nome, login, senha FROM pessoa WHERE codigo = " + str(codigo))
+            cursor.execute("SELECT id_usuario, data_inicio FROM public.\"Voluntario\" WHERE id_usuario = " + str(id_usuario))
             r = cursor.fetchone();
             if cursor.rowcount == 1:
                 v = Voluntario()
-                v.codigo = r[0]
-                v.nome = r[1]
-                v.login = r[2]
-                v.senha = r[3]
+                v.id_usuario = r[0]
+                v.data_inicio = r[1]
         except (Exception, psycopg2.Error) as error:
             traceback.print_exc()
         finally:
@@ -51,14 +47,15 @@ class VoluntarioDAO(object):
                 connection.close()
         return v
 
-    def inserir(self, codigo, nome, login, senha):
+#pendente
+    def inserir(self, id_usuario, data_inicio):
         sucesso = False
         try:
             connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO pessoa (codigo, nome, login, senha) VALUES (" + str(codigo) + ", '" + nome + "', '" + login + "', '" + senha + "')")
+            cursor.execute("INSERT INTO public.\"Voluntario\" (id_usuario, data_inicio) VALUES ('" + id_usuario + "', '" + data_inicio + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -69,14 +66,14 @@ class VoluntarioDAO(object):
                 connection.close()
         return sucesso
 
-    def atualizar(self, codigo, nome, login, senha):
+    def atualizar(self, id_usuario, data_inicio):
         sucesso = False
         try:
             connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE pessoa SET nome = '" + nome + "', login = '" + login + "', senha = '" + senha + "' WHERE codigo = " + str(codigo) + "")
+            cursor.execute("UPDATE public.\"Voluntario\" SET data_inicio = '" + data_inicio + "' WHERE id_usuario = " + str(id_usuario))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -87,14 +84,14 @@ class VoluntarioDAO(object):
                 connection.close()
         return sucesso
 
-    def remover(self, codigo):
+    def remover(self, id_usuario):
         sucesso = False
         try:
             connection = psycopg2.connect(user=PsycopgParameters.user, password=PsycopgParameters.password,
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM pessoa WHERE codigo = " + str(codigo) + "")
+            cursor.execute("DELETE FROM public.\"Voluntario\" WHERE id_usuario = " + str(id_usuario))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

@@ -8,30 +8,6 @@ class Doacao(object):
         self._id_doacao = id_doacao
 
     @property
-    def local(self):
-        return self._local
-
-    @local.setter
-    def local(self, local):
-        self._local = local
-
-    @property
-    def num_voluntarios(self):
-        return self._num_voluntarios
-
-    @num_voluntarios.setter
-    def num_voluntarios(self, num_voluntarios):
-        self._num_voluntarios = num_voluntarios
-
-    @property
-    def num_beneficiados(self):
-        return self._num_beneficiados
-
-    @num_beneficiados.setter
-    def num_beneficiados(self, num_beneficiados):
-        self._num_beneficiados = num_beneficiados
-
-    @property
     def id_tipo_doacao(self):
         return self._id_tipo_doacao
 
@@ -54,3 +30,19 @@ class Doacao(object):
     @id_patrocinador.setter
     def id_patrocinador(self, id_patrocinador):
         self._id_patrocinador = id_patrocinador
+
+    @property
+    def valor_doacao(self):
+        return self._valor_doacao
+
+    @valor_doacao.setter
+    def valor_doacao(self, valor_doacao):
+        self._valor_doacao = valor_doacao
+
+    @property
+    def data_doacao(self):
+        return self._data_doacao
+
+    @data_doacao.setter
+    def data_doacao(self, data_doacao):
+        self._data_doacao = data_doacao

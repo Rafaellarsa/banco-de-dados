@@ -43,7 +43,7 @@ class VoluntarioMenu(object):
         voluntarioDAO = VoluntarioDAO()
         voluntarios = voluntarioDAO.listar_todos()
         for v in voluntarios:
-            print("*** Código: " + str(v.codigo) + " - Nome: " + v.nome + " - Login: " + v.login + " - Senha: " + v.senha + " ***")
+            print("*** Id: " + str(v.id_usuario) + " - Data de início: " + v.data_inicio + " ***")
         print("*** " + str(len(voluntarios)) + " voluntário(s) encontrado(s) ***")
         self.menu_cadastrar_voluntarios()
 
@@ -55,7 +55,7 @@ class VoluntarioMenu(object):
         voluntarioDAO = VoluntarioDAO()
         voluntario = voluntarioDAO.listar(codigo)
         if voluntario is not None:
-            print("*** Código: " + str(voluntario.codigo) + " - Nome: " + voluntario.nome + " - Login: " + voluntario.login + " - Senha: " + voluntario.senha + " ***")
+            print("*** Id: " + str(voluntario.id_usuario) + " - Data de início: " + voluntario.data_inicio + " ***")
         else:
             print("*** Não foi possível localizar este voluntário ***")
         self.menu_cadastrar_voluntarios()
@@ -64,12 +64,10 @@ class VoluntarioMenu(object):
         print("==========================================")
         print("Inserir um Novo Voluntário")
         print("==========================================")
-        codigo = int(input("Digite o código do novo voluntário: "))
-        nome = input("Digite o nome do novo voluntário: ")
-        login = input("Digite o login do novo voluntário: ")
-        senha = input("Digite a senha do novo voluntário: ")
+        id_usuario = int(input("Digite o id do novo voluntário: "))
+        data_inicio = input("Digite a data de início do novo voluntário: ")
         voluntarioDAO = VoluntarioDAO()
-        sucesso = voluntarioDAO.inserir(codigo, nome, login, senha)
+        sucesso = voluntarioDAO.inserir(id_usuario, data_inicio)
         if sucesso == True:
             print("*** Voluntário inserido com sucesso ***")
         else:
@@ -80,12 +78,10 @@ class VoluntarioMenu(object):
         print("==========================================")
         print("Atualizar um Voluntário Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do voluntário: "))
-        nome = input("Digite o novo nome do voluntário: ")
-        login = input("Digite o novo login do voluntário: ")
-        senha = input("Digite a nova senha do voluntário: ")
+        id_usuario = int(input("Digite o id do voluntário: "))
+        data_inicio = input("Digite a nova data de início do voluntário: ")
         voluntarioDAO = VoluntarioDAO()
-        sucesso = voluntarioDAO.atualizar(codigo, nome, login, senha)
+        sucesso = voluntarioDAO.atualizar(id_usuario, data_inicio)
         if sucesso == True:
             print("*** Voluntário atualizado com sucesso ***")
         else:
@@ -96,9 +92,9 @@ class VoluntarioMenu(object):
         print("==========================================")
         print("Remover um voluntário existente")
         print("==========================================")
-        codigo = int(input("Digite o código do voluntário: "))
+        id_usuario = int(input("Digite o id do voluntário: "))
         voluntarioDAO = VoluntarioDAO()
-        sucesso = voluntarioDAO.remover(codigo)
+        sucesso = voluntarioDAO.remover(id_usuario)
         if sucesso == True:
             print("*** Voluntário removido com sucesso ***")
         else:

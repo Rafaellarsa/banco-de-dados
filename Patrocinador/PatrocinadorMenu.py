@@ -42,8 +42,8 @@ class PatrocinadorMenu(object):
         print("==========================================")
         patrocinadorDAO = PatrocinadorDAO()
         patrocinadores = patrocinadorDAO.listar_todos()
-        for v in patrocinadores:
-            print("*** Código: " + str(v.codigo) + " - Nome: " + v.nome + " - Login: " + v.login + " - Senha: " + v.senha + " ***")
+        for p in patrocinadores:
+            print("*** Id: " + str(p.id_usuario) + " - Periodicidade: " + p.periodicidade + " - Id da categoria de patrocínio: " + p.id_categoria_patrocinio + " ***")
         print("*** " + str(len(patrocinadores)) + " patrocinador(es) encontrado(s) ***")
         self.menu_cadastrar_patrocinadores()
 
@@ -55,7 +55,7 @@ class PatrocinadorMenu(object):
         patrocinadorDAO = PatrocinadorDAO()
         patrocinador = patrocinadorDAO.listar(codigo)
         if patrocinador is not None:
-            print("*** Código: " + str(patrocinador.codigo) + " - Nome: " + patrocinador.nome + " - Login: " + patrocinador.login + " - Senha: " + patrocinador.senha + " ***")
+            print("*** Id: " + str(patrocinador.id_usuario) + " - Periodicidade: " + patrocinador.periodicidade + " - Id da categoria de patrocínio: " + patrocinador.id_categoria_patrocinio + " ***")
         else:
             print("*** Não foi possível localizar este patrocinador ***")
         self.menu_cadastrar_patrocinadores()
@@ -64,12 +64,11 @@ class PatrocinadorMenu(object):
         print("==========================================")
         print("Inserir um Novo Patrocinador")
         print("==========================================")
-        codigo = int(input("Digite o código do novo patrocinador: "))
-        nome = input("Digite o nome do novo patrocinador: ")
-        login = input("Digite o login do novo patrocinador: ")
-        senha = input("Digite a senha do novo patrocinador: ")
+        id_usuario = int(input("Digite o id do novo patrocinador: "))
+        periodicidade = input("Digite a periodicidade do novo patrocinador: ")
+        id_categoria_patrocinio = input("Digite o id da categoria de patrocínio do novo patrocinador: ")
         patrocinadorDAO = PatrocinadorDAO()
-        sucesso = patrocinadorDAO.inserir(codigo, nome, login, senha)
+        sucesso = patrocinadorDAO.inserir(id_usuario, periodicidade, id_categoria_patrocinio)
         if sucesso == True:
             print("*** Patrocinador inserido com sucesso ***")
         else:
@@ -80,12 +79,11 @@ class PatrocinadorMenu(object):
         print("==========================================")
         print("Atualizar um Patrocinador Existente")
         print("==========================================")
-        codigo = int(input("Digite o código do patrocinador: "))
-        nome = input("Digite o novo nome do patrocinador: ")
-        login = input("Digite o novo login do patrocinador: ")
-        senha = input("Digite a nova senha do patrocinador: ")
+        id_usuario = int(input("Digite o id do patrocinador: "))
+        periodicidade = input("Digite a nova periodicidade do patrocinador: ")
+        id_categoria_patrocinio = input("Digite o id da nova categoria de patrocínio do patrocinador: ")
         patrocinadorDAO = PatrocinadorDAO()
-        sucesso = patrocinadorDAO.atualizar(codigo, nome, login, senha)
+        sucesso = patrocinadorDAO.atualizar(id_usuario, periodicidade, id_categoria_patrocinio)
         if sucesso == True:
             print("*** Patrocinador atualizado com sucesso ***")
         else:
@@ -96,9 +94,9 @@ class PatrocinadorMenu(object):
         print("==========================================")
         print("Remover um patrocinador existente")
         print("==========================================")
-        codigo = int(input("Digite o código do patrocinador: "))
+        id_usuario = int(input("Digite o id do patrocinador: "))
         patrocinadorDAO = PatrocinadorDAO()
-        sucesso = patrocinadorDAO.remover(codigo)
+        sucesso = patrocinadorDAO.remover(id_usuario)
         if sucesso == True:
             print("*** Patrocinador removido com sucesso ***")
         else:

@@ -43,7 +43,7 @@ class AcaoMenu(object):
         acaoDAO = AcaoDAO()
         acoes = acaoDAO.listar_todos()
         for a in acoes:
-            print("*** Id: " + str(a.id_acao) + " - Local: " + a.local + " - Número de beneficiários: " + a.num_beneficiados + " - Número de voluntários: " + a.num_voluntarios + " - Id do tipo de ação: " + a.id_tipo_acao + " - Id do voluntário: " + a.id_voluntario + " ***")
+            print("*** Id: " + str(a.id_acao) + " - Local: " + a.local + " - Número de beneficiários: " + a.num_beneficiados + " - Número de voluntários: " + a.num_voluntarios + " - Id do tipo de ação: " + a.id_tipo_acao + " - Id do voluntário: " + a.id_voluntario_responsavel + " ***")
         print("*** " + str(len(acoes)) + " ação(ões) encontrada(s) ***")
         self.menu_cadastrar_acoes()
 
@@ -55,7 +55,7 @@ class AcaoMenu(object):
         acaoDAO = AcaoDAO()
         acao = acaoDAO.listar(id_acao)
         if acao is not None:
-            print("*** Id: " + str(acao.id_acao) + " - Local: " + acao.local + " - Número de beneficiários: " + acao.num_beneficiados + " - Número de voluntários: " + acao.num_voluntarios + " - Id do tipo de ação: " + acao.id_tipo_acao + " - Id do voluntário: " + acao.id_voluntario + " ***")
+            print("*** Id: " + str(acao.id_acao) + " - Local: " + acao.local + " - Número de beneficiários: " + acao.num_beneficiados + " - Número de voluntários: " + acao.num_voluntarios + " - Id do tipo de ação: " + acao.id_tipo_acao + " - Id do voluntário: " + acao.id_voluntario_responsavel + " ***")
         else:
             print("*** Não foi possível localizar esta ação ***")
         self.menu_cadastrar_acoes()
@@ -68,9 +68,9 @@ class AcaoMenu(object):
         num_beneficiados = input("Digite o número de beneficiários da nova ação: ")
         num_voluntarios = input("Digite o número de voluntários da nova ação: ")
         id_tipo_acao = input("Digite o id do tipo da nova ação: ")
-        id_voluntario = input("Digite o id do voluntário da nova ação: ")
+        id_voluntario_responsavel = input("Digite o id do voluntário da nova ação: ")
         acaoDAO = AcaoDAO()
-        sucesso = acaoDAO.inserir(local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario)
+        sucesso = acaoDAO.inserir(local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario_responsavel)
         if sucesso == True:
             print("*** Ação inserida com sucesso ***")
         else:
@@ -86,9 +86,9 @@ class AcaoMenu(object):
         num_beneficiados = input("Digite o novo número de beneficiários da ação: ")
         num_voluntarios = input("Digite o novo número de voluntários da ação: ")
         id_tipo_acao = input("Digite o id do novo tipo da ação: ")
-        id_voluntario = input("Digite o id do novo voluntário da ação: ")
+        id_voluntario_responsavel = input("Digite o id do novo voluntário da ação: ")
         acaoDAO = AcaoDAO()
-        sucesso = acaoDAO.atualizar(id_acao, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario)
+        sucesso = acaoDAO.atualizar(id_acao, local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario_responsavel)
         if sucesso == True:
             print("*** Ação atualizada com sucesso ***")
         else:

@@ -40,9 +40,9 @@ class Acao(object):
         self._id_tipo_acao = id_tipo_acao
 
     @property
-    def id_voluntario(self):
-        return self._id_voluntario
+    def id_voluntario_responsavel(self):
+        return self._id_voluntario_responsavel
 
-    @id_voluntario.setter
-    def id_voluntario(self, id_voluntario):
-        self._id_voluntario = id_voluntario
+    @id_voluntario_responsavel.setter
+    def id_voluntario_responsavel(self, id_voluntario_responsavel):
+        self._id_voluntario_responsavel = id_voluntario_responsavel
