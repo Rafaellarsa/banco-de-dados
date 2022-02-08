@@ -47,7 +47,6 @@ class VoluntarioDAO(object):
                 connection.close()
         return v
 
-#pendente
     def inserir(self, id_usuario, data_inicio):
         sucesso = False
         try:
@@ -55,7 +54,7 @@ class VoluntarioDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Voluntario\" (id_usuario, data_inicio) VALUES ('" + id_usuario + "', '" + data_inicio + "')")
+            cursor.execute("INSERT INTO public.\"Voluntario\" (id_usuario, data_inicio) VALUES (" + str(id_usuario) + ", '" + data_inicio + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

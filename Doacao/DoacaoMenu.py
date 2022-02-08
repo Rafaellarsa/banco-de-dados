@@ -43,7 +43,7 @@ class DoacaoMenu(object):
         doacaoDAO = DoacaoDAO()
         doacoes = doacaoDAO.listar_todos()
         for d in doacoes:
-            print("*** Id: " + str(d.id_doacao) + " - Id do tipo de doação: " + d.id_tipo_doacao + " - Id da ação: " + d.id_acao + " - Id do patrocinador: " + d.id_patrocinador + " - Valor da doação: " + d.valor_doacao + " - Data da doação: " + d.data_doacao + " ***")
+            print("*** Id: " + str(d.id_doacao) + " - Id do tipo de doação: " + str(d.id_tipo_doacao) + " - Id da ação: " + str(d.id_acao) + " - Id do patrocinador: " + str(d.id_patrocinador) + " - Valor da doação: " + str(d.valor_doacao) + " - Data da doação: " + d.data_doacao + " ***")
         print("*** " + str(len(doacoes)) + " doação(ões) encontrada(s) ***")
         self.menu_cadastrar_doacoes()
 
@@ -55,7 +55,7 @@ class DoacaoMenu(object):
         doacaoDAO = DoacaoDAO()
         doacao = doacaoDAO.listar(id_doacao)
         if doacao is not None:
-            print("*** Id: " + str(doacao.id_doacao) + " - Id do tipo de doação: " + doacao.id_tipo_doacao + " - Id da ação: " + doacao.id_acao + " - Id do patrocinador: " + doacao.id_patrocinador + " - Valor da doação: " + doacao.valor_doacao + " - Data da doação: " + doacao.data_doacao + " ***")
+            print("*** Id: " + str(doacao.id_doacao) + " - Id do tipo de doação: " + str(doacao.id_tipo_doacao) + " - Id da ação: " + str(doacao.id_acao) + " - Id do patrocinador: " + str(doacao.id_patrocinador) + " - Valor da doação: " + str(doacao.valor_doacao) + " - Data da doação: " + doacao.data_doacao + " ***")
         else:
             print("*** Não foi possível localizar esta doação ***")
         self.menu_cadastrar_doacoes()

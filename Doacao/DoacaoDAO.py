@@ -37,7 +37,7 @@ class DoacaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("SELECT id_doacao, id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao FROM public.\"Doacao\" WHERE id_acao = " + str(id_doacao))
+            cursor.execute("SELECT id_doacao, id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao FROM public.\"Doacao\" WHERE id_doacao = " + str(id_doacao))
             r = cursor.fetchone();
             if cursor.rowcount == 1:
                 d = Doacao()
@@ -62,7 +62,7 @@ class DoacaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Doacao\" (id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao) VALUES (" + id_tipo_doacao + ", " + id_acao + ", " + id_patrocinador + ", '" + valor_doacao + "', '" + data_doacao + "')")
+            cursor.execute("INSERT INTO public.\"Doacao\" (id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao) VALUES (" + id_tipo_doacao + ", " + id_acao + ", " + id_patrocinador + ", " + valor_doacao + ", '" + data_doacao + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -80,7 +80,7 @@ class DoacaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE public.\"Doacao\" SET id_tipo_doacao = '" + id_tipo_doacao + "', id_acao = '" + id_acao + "', id_patrocinador = '" + id_patrocinador + "valor_doacao = '" + valor_doacao + "', data_doacao = '" + data_doacao + "' WHERE id_doacao = " + str(id_doacao))
+            cursor.execute("UPDATE public.\"Doacao\" SET id_tipo_doacao = " + id_tipo_doacao + ", id_acao = " + id_acao + ", id_patrocinador = " + id_patrocinador + ", valor_doacao = " + valor_doacao + ", data_doacao = '" + data_doacao + "' WHERE id_doacao = " + str(id_doacao))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -98,7 +98,7 @@ class DoacaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM public.\"Doacao\" WHERE id_doacao = " + str(id_doacao) + "")
+            cursor.execute("DELETE FROM public.\"Doacao\" WHERE id_doacao = " + str(id_doacao))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

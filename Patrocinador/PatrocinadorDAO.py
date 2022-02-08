@@ -49,7 +49,6 @@ class PatrocinadorDAO(object):
                 connection.close()
         return p
 
-#pendente
     def inserir(self, id_usuario, periodicidade, id_categoria_patrocinio):
         sucesso = False
         try:
@@ -57,7 +56,7 @@ class PatrocinadorDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Patrocinador\" (id_usuario, periodicidade, id_categoria_patrocinio) VALUES ('" + id_usuario + "', '" + periodicidade + "', " + id_categoria_patrocinio + ")")
+            cursor.execute("INSERT INTO public.\"Patrocinador\" (id_usuario, periodicidade, id_categoria_patrocinio) VALUES (" + str(id_usuario) + ", '" + periodicidade + "', " + str(id_categoria_patrocinio) + ")")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
