@@ -62,7 +62,7 @@ class DoacaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Doacao\" (id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao) VALUES ('" + id_tipo_doacao + "', '" + id_acao + "', '" + id_patrocinador + "', '" + valor_doacao + "', '" + data_doacao + "')")
+            cursor.execute("INSERT INTO public.\"Doacao\" (id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao) VALUES (" + id_tipo_doacao + ", " + id_acao + ", " + id_patrocinador + ", '" + valor_doacao + "', '" + data_doacao + "')")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

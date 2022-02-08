@@ -62,7 +62,7 @@ class AcaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO public.\"Acao\" (local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario_responsavel) VALUES ('" + local + "', '" + num_beneficiados + "', '" + num_voluntarios + "', '" + id_tipo_acao + "', '" + id_voluntario_responsavel + "')")
+            cursor.execute("INSERT INTO public.\"Acao\" (local, num_beneficiados, num_voluntarios, id_tipo_acao, id_voluntario_responsavel) VALUES ('" + local + "', '" + num_beneficiados + "', '" + num_voluntarios + "', " + id_tipo_acao + ", " + id_voluntario_responsavel + ")")
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -80,7 +80,7 @@ class AcaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("UPDATE public.\"Acao\" SET local = '" + local + "', num_beneficiados = '" + num_beneficiados + "', num_voluntarios = '" + num_voluntarios + "', id_tipo_acao = '" + id_tipo_acao + "', id_voluntario_responsavel = '" + id_voluntario_responsavel + "' WHERE id_acao = " + str(id_acao))
+            cursor.execute("UPDATE public.\"Acao\" SET local = '" + local + "', num_beneficiados = '" + num_beneficiados + "', num_voluntarios = '" + num_voluntarios + "', id_tipo_acao = " + id_tipo_acao + ", id_voluntario_responsavel = " + id_voluntario_responsavel + " WHERE id_acao = " + str(id_acao))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:
@@ -98,7 +98,7 @@ class AcaoDAO(object):
                                           host=PsycopgParameters.host, port=PsycopgParameters.port,
                                           database=PsycopgParameters.database)
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM public.\"Acao\" WHERE id_acao = " + str(id_acao) + "")
+            cursor.execute("DELETE FROM public.\"Acao\" WHERE id_acao = " + str(id_acao))
             connection.commit()
             sucesso = (cursor.rowcount == 1)
         except (Exception, psycopg2.Error) as error:

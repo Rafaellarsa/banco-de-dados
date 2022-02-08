@@ -43,7 +43,7 @@ class DoacaoMenu(object):
         doacaoDAO = DoacaoDAO()
         doacoes = doacaoDAO.listar_todos()
         for d in doacoes:
-            print("*** Id: " + str(d.id_doacao) + " - Local: " + d.local + " - Número de beneficiários: " + d.num_beneficiados + " - Número de voluntários: " + d.num_voluntarios + " - Id do tipo de doação: " + d.id_tipo_doacao + " - Id da ação: " + d.id_acao + " - Id do patrocinador: " + d.id_patrocinador + " ***")
+            print("*** Id: " + str(d.id_doacao) + " - Id do tipo de doação: " + d.id_tipo_doacao + " - Id da ação: " + d.id_acao + " - Id do patrocinador: " + d.id_patrocinador + " - Valor da doação: " + d.valor_doacao + " - Data da doação: " + d.data_doacao + " ***")
         print("*** " + str(len(doacoes)) + " doação(ões) encontrada(s) ***")
         self.menu_cadastrar_doacoes()
 
@@ -55,7 +55,7 @@ class DoacaoMenu(object):
         doacaoDAO = DoacaoDAO()
         doacao = doacaoDAO.listar(id_doacao)
         if doacao is not None:
-            print("*** Id: " + str(doacao.id_doacao) + " - Local: " + doacao.local + " - Número de beneficiários: " + doacao.num_beneficiados + " - Número de voluntários: " + doacao.num_voluntarios + " - Id do tipo de doação: " + doacao.id_tipo_doacao + " - Id da ação: " + doacao.id_acao + " - Id do patrocinador: " + doacao.id_patrocinador + " ***")
+            print("*** Id: " + str(doacao.id_doacao) + " - Id do tipo de doação: " + doacao.id_tipo_doacao + " - Id da ação: " + doacao.id_acao + " - Id do patrocinador: " + doacao.id_patrocinador + " - Valor da doação: " + doacao.valor_doacao + " - Data da doação: " + doacao.data_doacao + " ***")
         else:
             print("*** Não foi possível localizar esta doação ***")
         self.menu_cadastrar_doacoes()
@@ -64,14 +64,13 @@ class DoacaoMenu(object):
         print("==========================================")
         print("Inserir uma Nova Doação")
         print("==========================================")
-        local = input("Digite o local da nova doação: ")
-        num_beneficiados = input("Digite o número de beneficiários da nova doação: ")
-        num_voluntarios = input("Digite o número de voluntários da nova doação: ")
         id_tipo_doacao = input("Digite o id do tipo da nova doação: ")
         id_acao = input("Digite o id da ação da nova doação: ")
         id_patrocinador = input("Digite o id do patrocinador da nova doação: ")
+        valor_doacao = input("Digite o valor da nova doação: ")
+        data_doacao = input("Digite a data da nova doação: ")
         doacaoDAO = DoacaoDAO()
-        sucesso = doacaoDAO.inserir(local, num_beneficiados, num_voluntarios, id_tipo_doacao, id_acao, id_patrocinador)
+        sucesso = doacaoDAO.inserir(id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao)
         if sucesso == True:
             print("*** Doação inserida com sucesso ***")
         else:
@@ -83,14 +82,13 @@ class DoacaoMenu(object):
         print("Atualizar uma Doação Existente")
         print("==========================================")
         id_doacao = int(input("Digite o id da doação: "))
-        local = input("Digite o novo local da nova doação: ")
-        num_beneficiados = input("Digite o novo número de beneficiários da doação: ")
-        num_voluntarios = input("Digite o novo número de voluntários da doação: ")
         id_tipo_doacao = input("Digite o id do novo tipo da doação: ")
         id_acao = input("Digite o id da nova ação da doação: ")
         id_patrocinador = input("Digite o id do novo patrocinador da doação: ")
+        valor_doacao = input("Digite o novo valor da doação: ")
+        data_doacao = input("Digite a nova data da doação: ")
         doacaoDAO = DoacaoDAO()
-        sucesso = doacaoDAO.atualizar(id_doacao, local, num_beneficiados, num_voluntarios, id_tipo_doacao, id_acao, id_patrocinador)
+        sucesso = doacaoDAO.atualizar(id_doacao, id_tipo_doacao, id_acao, id_patrocinador, valor_doacao, data_doacao)
         if sucesso == True:
             print("*** Doação atualizada com sucesso ***")
         else:
